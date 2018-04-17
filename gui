@@ -1,1 +1,52 @@
- 
+#!/usr/bin/python3
+
+from tkinter import *
+
+def checkered(canvas, line_distance):
+   # vertical lines at an interval of "line_distance" pixel
+   for x in range(line_distance,canvas_width,line_distance):
+      canvas.create_line(x, 0, x, canvas_height, fill="#476042")
+   # horizontal lines at an interval of "line_distance" pixel
+   for y in range(line_distance,canvas_height,line_distance):
+      canvas.create_line(0, y, canvas_width, y, fill="#476042")
+
+def donothing():
+	pass
+
+master = Tk()
+master.geometry("1200x800+30+30")
+
+#Vytvoreni podkladu
+canvas_width = 20000
+canvas_height = 20000 
+w = Canvas(master, 
+           width=canvas_width,
+           height=canvas_height)
+w.pack()
+
+checkered(w,10)
+
+# Vytvoreni menu
+menubar = Menu(master)
+filemenu = Menu(menubar, tearoff=0)
+filemenu.add_command(label="New", command=donothing)
+filemenu.add_command(label="Open", command=donothing)
+filemenu.add_command(label="Save", command=donothing)
+filemenu.add_command(label="Save as...", command=donothing)
+filemenu.add_command(label="Exit", command=donothing)
+
+menubar.add_cascade(label="File", menu=filemenu)
+
+editmenu = Menu(menubar, tearoff=0)
+editmenu.add_command(label="Undo", command=donothing)
+editmenu.add_separator()
+editmenu.add_command(label="Add", command=donothing)
+
+menubar.add_cascade(label="Edit", menu=editmenu)
+
+master.config(menu=menubar)
+
+mainloop()
+
+
+
